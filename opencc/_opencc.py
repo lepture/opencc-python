@@ -1,17 +1,21 @@
 # coding: utf-8
 
-from ctypes import CDLL, cast, c_char_p, c_int, c_size_t, c_void_p
+import os
 from ctypes.util import find_library
+from ctypes import CDLL, cast, c_char_p, c_int, c_size_t, c_void_p
 
 __all__ = ['CONFIGS', 'convert']
 
 
-def load_library():
-    libc = CDLL(find_library('libc'), use_errno=True)
-    libopencc = CDLL(find_library('libopencc'), use_errno=True)
-    return libc, libopencc
+_libcfile = find_library('c') or 'libc.so.6'
+libc = CDLL(_libcfile, use_errno=True)
 
-libc, libopencc = load_library()
+_libopenccfile = os.environ.get('LIBOPENCC') or find_library('libopencc')
+if _libopenccfile:
+    libopencc = CDLL(_libopenccfile, use_errno=True)
+else:
+    libopencc = CDLL('libopencc.so.1', use_errno=True)
+
 
 libc.free.argtypes = [c_void_p]
 
