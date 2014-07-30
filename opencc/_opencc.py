@@ -10,7 +10,7 @@ __all__ = ['CONFIGS', 'convert']
 _libcfile = find_library('c') or 'libc.so.6'
 libc = CDLL(_libcfile, use_errno=True)
 
-_libopenccfile = os.environ.get('LIBOPENCC') or find_library('libopencc')
+_libopenccfile = os.environ.get('LIBOPENCC') or find_library('opencc')
 if _libopenccfile:
     libopencc = CDLL(_libopenccfile, use_errno=True)
 else:
