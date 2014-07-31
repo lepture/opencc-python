@@ -25,7 +25,7 @@ setup(
     description='A ctypes-based OpenCC converter for Chinese.',
     long_description=fread('README.rst'),
     license='BSD',
-    packages=['opencc'],
+    py_modules=['opencc'],
     zip_safe=False,
     platforms='any',
     tests_require=['nose'],

@@ -5,7 +5,8 @@ from ctypes.util import find_library
 from ctypes import CDLL, cast, c_char_p, c_int, c_size_t, c_void_p
 
 __all__ = ['CONFIGS', 'convert']
-
+__version__ = '0.1'
+__author__ = 'Hsiaoming Yang <me@lepture.com>'
 
 _libcfile = find_library('c') or 'libc.so.6'
 libc = CDLL(_libcfile, use_errno=True)
