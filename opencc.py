@@ -1,8 +1,14 @@
 # coding: utf-8
 
 import os
+import sys
 from ctypes.util import find_library
 from ctypes import CDLL, cast, c_char_p, c_int, c_size_t, c_void_p
+
+if sys.version_info[0] == 3:
+    text_type = str
+else:
+    text_type = unicode
 
 __all__ = ['CONFIGS', 'convert']
 __version__ = '0.1'
@@ -38,7 +44,11 @@ CONFIGS = [
 def convert(text, config='zht2zhs.ini'):
     assert config in CONFIGS
 
-    od = libopencc.opencc_open(c_char_p(config))
+    if isinstance(text, text_type):
+        # use bytes
+        text = text.encode('utf-8')
+
+    od = libopencc.opencc_open(c_char_p(config.encode('utf-8')))
     retv_i = libopencc.opencc_convert_utf8(od, text, len(text))
     if retv_i == -1:
         raise Exception('OpenCC Convert Error')
@@ -46,4 +56,4 @@ def convert(text, config='zht2zhs.ini'):
     value = retv_c.value
     libc.free(retv_c)
     libopencc.opencc_close(od)
-    return value
+    return value.decode('utf-8')
