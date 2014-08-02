@@ -1,30 +1,25 @@
 OpenCC for Python
 =================
 
-A ctypes-based OpenCC_ converter for Python.
+An OpenCC_ converter for Python.
 
 .. _OpenCC: https://github.com/BYVoid/OpenCC
 
 Installation
 ------------
 
-You should install OpenCC library first:
-
-Debian/Ubuntu::
-
-    # apt-get install opencc
-
-Fedora::
-
-    # yum install opencc
-
-Mac::
-
-    $ brew install opencc
+You should install OpenCC (0.4.3) library first.
 
 Install the python library with pip::
 
     $ pip install OpenCC
+
+
+Features
+--------
+
+1. Compatible with CPython and PyPy (c-types)
+2. Cython implementation (TODO)
 
 
 Usage
