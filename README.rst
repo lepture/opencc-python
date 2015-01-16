@@ -8,7 +8,7 @@ An OpenCC_ converter for Python.
 Installation
 ------------
 
-You should install OpenCC (0.4.3) library first.
+You should install OpenCC (1.0.x) library first.
 
 Install the python library with pip::
 
@@ -29,23 +29,18 @@ This library has only one method::
 
     >>> import opencc
     >>> opencc.convert('乾坤一擲')
-    >>> opencc.convert('乾坤一掷', config='zhs2zht.ini')
+    >>> opencc.convert('乾坤一掷', config='s2t.json')
 
 Config
 ------
 
 Convert method accepts an additional config parameter. Available configs::
 
-
-    zhs2zhtw_p.ini
-    zhs2zhtw_v.ini
-    zhs2zhtw_vp.ini
-    zht2zhtw_p.ini
-    zht2zhtw_v.ini
-    zht2zhtw_vp.ini
-    zhtw2zhs.ini
-    zhtw2zht.ini
-    zhtw2zhcn_s.ini
-    zhtw2zhcn_t.ini
-    zhs2zht.ini
-    zht2zhs.ini
+    hk2s.json
+    s2hk.json
+    s2t.json
+    s2tw.json
+    s2twp.json
+    t2s.json
+    tw2s.json
+    tw2sp.json
