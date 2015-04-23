@@ -10,7 +10,7 @@ if sys.version_info[0] == 3:
 else:
     text_type = unicode
 
-__all__ = ['CONFIGS', 'convert']
+__all__ = ['CONFIGS', 'convert', 'OpenCC']
 __version__ = '0.2'
 __author__ = 'Hsiaoming Yang <me@lepture.com>'
 
