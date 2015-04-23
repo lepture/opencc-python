@@ -11,7 +11,7 @@ def test_convert():
     assert convert(text) == expect
 
 
-def test_convert2():
+def test_class_convert():
     cc = OpenCC()
     text = '乾坤一擲'
     expect = '乾坤一掷'
