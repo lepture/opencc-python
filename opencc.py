@@ -1,5 +1,5 @@
 # coding: utf-8
-
+from __future__ import absolute_import, unicode_literals
 import os
 import sys
 from ctypes.util import find_library
@@ -38,17 +38,28 @@ CONFIGS = [
 ]
 
 
-def convert(text, config='t2s.json'):
-    if isinstance(text, text_type):
-        # use bytes
-        text = text.encode('utf-8')
+class OpenCC(object):
 
-    od = libopencc.opencc_open(c_char_p(config.encode('utf-8')))
-    retv_i = libopencc.opencc_convert_utf8(od, text, len(text))
-    if retv_i == -1:
-        raise Exception('OpenCC Convert Error')
-    retv_c = cast(retv_i, c_char_p)
-    value = retv_c.value
-    libc.free(retv_c)
-    libopencc.opencc_close(od)
-    return value.decode('utf-8')
+    def __init__(self, config='t2s.json'):
+        self._od = libopencc.opencc_open(c_char_p(config.encode('utf-8')))
+
+    def convert(self, text):
+        if isinstance(text, text_type):
+            # use bytes
+            text = text.encode('utf-8')
+
+        retv_i = libopencc.opencc_convert_utf8(self._od, text, len(text))
+        if retv_i == -1:
+            raise Exception('OpenCC Convert Error')
+        retv_c = cast(retv_i, c_char_p)
+        value = retv_c.value
+        libc.free(retv_c)
+        return value.decode('utf-8')
+
+    def __del__(self):
+        libopencc.opencc_close(self._od)
+
+
+def convert(text, config='t2s.json'):
+    cc = OpenCC(config)
+    return cc.convert(text)
