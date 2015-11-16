@@ -35,6 +35,7 @@ CONFIGS = [
     'hk2s.json', 's2hk.json',
     's2t.json', 's2tw.json', 's2twp.json',
     't2s.json', 'tw2s.json', 'tw2sp.json',
+    't2tw.json', 't2hk.json',
 ]
 
 
