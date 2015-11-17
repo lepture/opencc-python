@@ -2,14 +2,7 @@
 # coding: utf-8
 
 
-try:
-    # python setup.py test
-    import multiprocessing
-except ImportError:
-    pass
-
 from setuptools import setup
-import opencc
 
 
 def fread(filepath):
@@ -18,7 +11,7 @@ def fread(filepath):
 
 setup(
     name='OpenCC',
-    version=opencc.__version__,
+    version='0.2',
     url='https://github.com/lepture/opencc-python',
     author='Hsiaoming Yang',
     author_email='me@lepture.com',
